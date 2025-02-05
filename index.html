@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Maalakha</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <audio id="background-music" autoplay loop>
+        <source src="song.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <div class="animated-background">
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+    </div>
+
+    <div id="starry-night"></div>
+
+    <div class="flowers">
+        <div class="flower" style="background-image: url('Pic1.jpg');" onclick="alert('I know things which are gonna happen now might be crazy for you, yet this moment feels too precious to let slip by. Though distance keeps us apart, On this Valentine’s Week, I long to express my love to you, even if my words must travel through the air, carried by the hope that you can feel the depth of my feelings.')"></div>
+        <div class="flower" style="background-image: url('Pic2.jpg');" onclick="alert('The childhood and the hometown were the best chapters of my life. 16 years in Punalur, intertwined with the memories of Toc-H, were filled with joy and experiences that will forever stay with me.')"></div>
+        <div class="flower" style="background-image: url('Pic11.jpg');" onclick="alert('Though I have countless memories from Toc-H, I am deeply thankful to the school for gifting me something truly precious in my life. If it weren’t for my time there, I would have missed out on such a priceless gem like you.')"></div>
+        <div class="flower" style="background-image: url('Pic4.jpg');" onclick="alert('जिसका इंतज़ार दिल से किया जाए, उसका फल हमेशा मीठा और खास होता है। सब्र का इनाम हमेशा शानदार होता है। The wait was truly precious—more than a decade of longing, hoping, and dreaming, until destiny finally brought you into my life, making every moment of patience worthwhile.')"></div>
+        <div class="flower" style="background-image: url('Pic\ 10.jpg');" onclick="alert('You are my Angel, a divine gift from God above,Blessing my life with boundless love.')"></div>
+        <div class="flower" style="background-image: url('Pic5.jpg');" onclick="alert('Exodus 23:20 - See, I am sending an angel ahead of you to guard you along the way and to bring you to the place I have prepared.......In the journey of my life, God graced me with an Angel — One who brings joy to my heart, cherishes my emotions, and paints my memories with beauty beyond compare. ')"></div>
+        <div class="flower" style="background-image: url('Pic6.jpg');" onclick="alert('From the first hello to our endless chats, You were my friend, the one who had my back. 🤍 I know, I was not there to stand by you in your darkest hour, But somewhere along the way, something changed in me, A love bloomed quietly, as pure as it could be. 🌸')"></div>
+        <div class="flower" style="background-image: url('Pic9.jpg');" onclick="alert('We may have faced countless fights and quarrels along the way,But within our journey, far more were the moments of joy that stayed. പിണക്കത്തിന് ശേഷമുള്ള ഇണക്കത്തിന് മധുരം കൂടും…! പിണക്കമില്ലാതെ എന്ത് സ്നേഹം…!!')"></div>
+        <div class="flower" style="background-image: url('Pic8.jpg');" onclick="alert('Though miles stretch between us, my heart feels no distance. Your laughter echoes in my mind, a melody I cherish. 🎶 If stars can shine from galaxies apart ✨,So here is my heart, across the time and space, Asking if you would like to journey through life with me, hand in hand, no matter the place. ❤️')"></div>
+    </div>
+
+    <div class="message">
+        <img src="puppy1.png" alt="Heart" class="heart-image" id="heart-image">
+        <h2>Will You Be Mine Forever? 💍</h2>
+        <p>Even with the distance, you light up my world like no one else. </p>
+        <button id="yes-button" onclick="triggerCongratulations()">Absolutely, Forever! 🌹</button>
+        <button id="no-button" class="no-button">I Need More Time... 🕰️</button>
+        <button id="y-button" class="y-button">That's not gonna happen</button>
+    </div>
+
+    <div id="congrats-container"></div>
+
+    <div id="congrats-message">
+        <h2>You've made me the happiest person alive! 🎉🥰</h2>
+    </div>
+
+    <script>
+        window.addEventListener('load', () => {
+    const backgroundMusic = document.getElementById('background-music');
+    backgroundMusic.volume = 0.40;
+
+    // Attempt to play the audio after a user gesture (for stricter browsers)
+    backgroundMusic.play().catch(() => {
+        console.log("Audio playback blocked until user interaction.");
+        document.body.addEventListener('click', () => {
+            backgroundMusic.play();
+        }, { once: true });
+    });
+});
+
+        const starryNight = document.getElementById('starry-night');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 2 + 's';
+            starryNight.appendChild(star);
+        }
+
+        const heartImage = document.getElementById('heart-image');
+        const yesButton = document.getElementById('yes-button');
+        const noButtonElement = document.getElementById('no-button');
+        const yButtonElement = document.getElementById('y-button');
+
+        yesButton.addEventListener('mouseover', () => {
+            heartImage.src = 'puppy.png';
+        });
+
+        yesButton.addEventListener('mouseout', () => {
+            heartImage.src = 'puppy1.png';
+        });
+
+        noButtonElement.addEventListener('mouseover', () => {
+            heartImage.src = 'saddog.png';
+            
+        });
+
+        noButtonElement.addEventListener('mouseout', () => {
+            heartImage.src = 'puppy1.png';
+        });
+
+        yButtonElement.addEventListener('mouseover', () => {
+            heartImage.src = 'sadpuppy.png';
+            
+        });
+
+        yButtonElement.addEventListener('mouseout', () => {
+            heartImage.src = 'puppy1.png';
+        });
+
+        function triggerCongratulations() {
+            const container = document.getElementById('congrats-container');
+            container.style.display = 'block';
+            
+            for (let i = 0; i < 30; i++) {
+                const firework = document.createElement('div');
+                firework.className = 'firework';
+                firework.style.left = Math.random() * 100 + '%';
+                firework.style.top = Math.random() * 100 + '%';
+                container.appendChild(firework);
+
+                setTimeout(() => {
+                    firework.remove();
+                }, 1500);
+            }
+
+            const message = document.getElementById('congrats-message');
+            message.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
