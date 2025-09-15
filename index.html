@@ -37,6 +37,7 @@
         <img src="puppy1.png" alt="Heart" class="heart-image" id="heart-image">
         <h2>Will You Be Mine Forever? 💍</h2>
         <p>Even with the distance, you light up my world like no one else. </p>
+        <input type="text" id="username" placeholder="Enter your name">
         <button id="yes-button" onclick="sendChoice('yes')">Absolutely, Forever! 🌹</button>
         <button id="no-button" class="no-button" onclick="sendChoice('later')">I Need More Time... 🕰️</button>
         <button id="y-button" class="y-button" onclick="sendChoice('no')">That's not gonna happen</button>
@@ -147,11 +148,12 @@
   // ✅ Function to save choice
   async function sendChoice(choice) {
     try {
-      await addDoc(collection(db, "responses"), {
-        option: choice,
-        timestamp: new Date()
-      });
-      alert("Saved your choice: " + choice);
+        const name = document.getElementById("username").value || "Anonymous";
+        await addDoc(collection(db, "responses"), {
+            name: name,
+            option: choice,
+            timestamp: new Date()
+        });
     } catch (e) {
       console.error("Error adding document: ", e);
     }
@@ -163,3 +165,4 @@
 
 </body>
 </html>
+
