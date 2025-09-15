@@ -37,9 +37,10 @@
         <img src="puppy1.png" alt="Heart" class="heart-image" id="heart-image">
         <h2>Will You Be Mine Forever? 💍</h2>
         <p>Even with the distance, you light up my world like no one else. </p>
-        <button id="yes-button" onclick="triggerCongratulations()">Absolutely, Forever! 🌹</button>
-        <button id="no-button" class="no-button">I Need More Time... 🕰️</button>
-        <button id="y-button" class="y-button">That's not gonna happen</button>
+        <button id="yes-button" onclick="sendChoice('yes')">Absolutely, Forever! 🌹</button>
+        <button id="no-button" class="no-button" onclick="sendChoice('later')">I Need More Time... 🕰️</button>
+        <button id="y-button" class="y-button" onclick="sendChoice('no')">That's not gonna happen</button>
+
     </div>
 
     <div id="congrats-container"></div>
@@ -123,5 +124,42 @@
             message.style.display = 'block';
         }
     </script>
+    <script type="module">
+  // ✅ Import Firebase
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+
+  // ✅ Firebase config (yours is correct)
+  const firebaseConfig = {
+    apiKey: "AIzaSyAR39x_aIoMfJSyZ6J3CFz4pqZxACbYskE",
+    authDomain: "sneham-801a2.firebaseapp.com",
+    projectId: "sneham-801a2",
+    storageBucket: "sneham-801a2.firebasestorage.app",
+    messagingSenderId: "993220038278",
+    appId: "1:993220038278:web:716cba6b8c0cd818034b07",
+    measurementId: "G-ZEFHJ2RNJQ"
+  };
+
+  // ✅ Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // ✅ Function to save choice
+  async function sendChoice(choice) {
+    try {
+      await addDoc(collection(db, "responses"), {
+        option: choice,
+        timestamp: new Date()
+      });
+      alert("Saved your choice: " + choice);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+  }
+
+  // ✅ Make function available to HTML buttons
+  window.sendChoice = sendChoice;
+</script>
+
 </body>
 </html>
